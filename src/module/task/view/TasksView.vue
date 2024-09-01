@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center">
+  <div class="flex flex-col justify-center items-center gap-4 p-4">
     <TaskForm @add-task="addTask" />
     <TaskList :tasks="tasks" @delete-task="deleteTask" @update-task="updateTask" />
   </div>

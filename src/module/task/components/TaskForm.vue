@@ -1,19 +1,26 @@
 <template>
   <form
     @submit.prevent="submitTask"
-    class="flex flex-col gap-2 justify-center space-x-2 w-screen md:max-w-screen-md"
+    class="flex flex-col gap-3 justify-center space-x-2 w-full md:max-w-screen-md"
   >
     <input
       v-model="task.description"
       type="text"
-      class="border rounded-full px-3 py-1 w-full text-xl"
+      class="border rounded-xl p-2 w-full text-xl text-center"
       placeholder="Que vas a hacer hoy?"
     />
     <div class="flex gap-3 justify-end">
-      <select v-model="task.difficulty" class="border rounded px-2 py-1">
-        <option value="simple">Sencilla</option>
-        <option value="complex">Compleja</option>
-      </select>
+      <div class="flex items-center">
+        <input
+          id="link-checkbox"
+          type="checkbox"
+          v-model="task.isComplex"
+          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+        />
+        <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900"
+          >Es una tarea compleja?
+        </label>
+      </div>
       <button type="submit" class="bg-blue-600 text-white px-4 py-1 rounded">Añadir</button>
     </div>
   </form>
@@ -25,7 +32,7 @@ import type { Task } from '../store/useTaskStore'
 
 const task = ref<Task>({
   description: '',
-  difficulty: 'simple'
+  isComplex: false
 })
 
 const emit = defineEmits<{
@@ -37,6 +44,7 @@ function submitTask() {
     task.value.id = Date.now()
     emit('add-task', { ...task.value })
     task.value.description = ''
+    task.value.isComplex = false
   }
 }
 </script>

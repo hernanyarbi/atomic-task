@@ -3,7 +3,8 @@ import { defineStore } from 'pinia'
 export interface Task {
   id?: number
   description: string
-  difficulty: 'simple' | 'complex'
+  isComplex: boolean
+  subTask?: Task[]
 }
 
 export const useTaskStore = defineStore('taskStore', {

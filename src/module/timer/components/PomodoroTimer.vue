@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-2 border border-white rounded-full px-2 py-1">
+  <div class="flex items-center gap-2 border-2 border-white rounded-full px-2 py-1">
     <button
       @click="toggleTimer"
       class="rounded-full bg-gray-500 bg-opacity-30 hover:bg-gray-700 hover:bg-opacity-25 text-white p-1"

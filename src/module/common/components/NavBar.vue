@@ -24,9 +24,9 @@ const useTaskStore = useTimerStore()
 
 <style scoped>
 .focus-navbar {
-  @apply bg-red-700;
+  @apply bg-red-500;
 }
 .rest-navbar {
-  @apply bg-green-700;
+  @apply bg-green-600;
 }
 </style>
