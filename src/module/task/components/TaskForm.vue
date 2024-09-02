@@ -15,24 +15,32 @@
           id="link-checkbox"
           type="checkbox"
           v-model="task.isComplex"
-          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+          class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded-full"
         />
         <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900"
           >Es una tarea compleja?
         </label>
       </div>
-      <button type="submit" class="bg-blue-600 text-white px-4 py-1 rounded">Añadir</button>
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-xl">
+        Añadir
+      </button>
+      <button class="p-2 bg-red-400 hover:bg-red-600 rounded-xl">
+        <ClockIcon />
+      </button>
     </div>
   </form>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { Task } from '../store/useTaskStore'
+import type { Task } from '../interfaces/task.interface'
+import ClockIcon from '@/module/common/icons/ClockIcon.vue'
 
 const task = ref<Task>({
+  id: new Date().getTime(),
   description: '',
-  isComplex: false
+  isComplex: false,
+  trackedTime: 0
 })
 
 const emit = defineEmits<{
@@ -44,6 +52,7 @@ function submitTask() {
     task.value.id = Date.now()
     emit('add-task', { ...task.value })
     task.value.description = ''
+    task.value.trackedTime = 0
     task.value.isComplex = false
   }
 }
