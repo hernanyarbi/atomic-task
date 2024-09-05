@@ -38,6 +38,11 @@
       <ToolTip text="Guardar Cambios" position="bottom" v-if="editMode">
         <div class="cursor-pointer" @click="updateChanges"><TickSquareIcon /></div>
       </ToolTip>
+      <ToolTip text="Eliminar Tarea" position="bottom">
+        <div class="cursor-pointer" @click="taskStore.deleteTask(task.id)">
+          <TrashIcon />
+        </div>
+      </ToolTip>
     </div>
   </div>
 </template>
@@ -50,6 +55,7 @@ import CutIcon from '@/module/common/icons/CutIcon.vue'
 import { ref } from 'vue'
 import TickSquareIcon from '@/module/common/icons/TickSquareIcon.vue'
 import EditIcon from '@/module/common/icons/EditIcon.vue'
+import TrashIcon from '@/module/common/icons/TrashIcon.vue'
 interface Props {
   task: Task
 }
