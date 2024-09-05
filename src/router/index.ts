@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import TasksView from '@/module/task/view/TasksView.vue'
+import TasksLayout from '@/module/task/layout/TasksLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,19 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: TasksView
+      component: TasksLayout,
+      children: [
+        {
+          path: '/',
+          name: 'tasks',
+          component: () => import('@/module/task/view/PendingTasksView.vue')
+        },
+        {
+          path: '/history',
+          name: 'completed-tasks',
+          component: () => import('@/module/task/view/CompletedTasksView.vue')
+        }
+      ]
     }
   ]
 })

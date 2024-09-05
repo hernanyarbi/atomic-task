@@ -3,6 +3,7 @@
     <input
       id="link-checkbox"
       type="checkbox"
+      :checked="!!task.completedAt"
       @change="taskStore.completeTask(task.id)"
       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
     />
@@ -19,7 +20,7 @@
     />
   </div>
   <div class="flex justify-end items-center">
-    <div class="flex space-x-2">
+    <div class="flex space-x-2" v-if="!task.completedAt">
       <ToolTip
         text="Puedes considerar dividir esta tarea."
         position="bottom"

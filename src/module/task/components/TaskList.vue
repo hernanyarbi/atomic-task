@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-screen-lg">
+  <div class="w-full md:max-w-screen-md">
     <div
       v-for="task in tasks"
       :key="task.id"

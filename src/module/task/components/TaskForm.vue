@@ -24,9 +24,6 @@
       <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-xl">
         Añadir
       </button>
-      <button class="p-2 bg-red-400 hover:bg-red-600 rounded-xl">
-        <ClockIcon />
-      </button>
     </div>
   </form>
 </template>
@@ -34,7 +31,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { Task } from '../interfaces/task.interface'
-import ClockIcon from '@/module/common/icons/ClockIcon.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const task = ref<Task>({
   id: new Date().getTime(),
@@ -54,6 +53,9 @@ function submitTask() {
     task.value.description = ''
     task.value.trackedTime = 0
     task.value.isComplex = false
+    if (router.currentRoute.value.name === 'completed-tasks') {
+      router.push({ name: 'tasks' })
+    }
   }
 }
 </script>
