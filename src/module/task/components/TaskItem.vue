@@ -44,6 +44,9 @@
         </div>
       </ToolTip>
     </div>
+    <div v-else>
+      <p>{{ formatDate(task.completedAt) }}</p>
+    </div>
   </div>
 </template>
 
@@ -56,6 +59,7 @@ import { ref } from 'vue'
 import TickSquareIcon from '@/module/common/icons/TickSquareIcon.vue'
 import EditIcon from '@/module/common/icons/EditIcon.vue'
 import TrashIcon from '@/module/common/icons/TrashIcon.vue'
+import { formatDate } from '@/module/common/actions/format-date.action'
 interface Props {
   task: Task
 }

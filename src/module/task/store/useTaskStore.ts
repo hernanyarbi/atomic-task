@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 import type { Task } from '../interfaces/task.interface'
 import { computed, ref } from 'vue'
+import { useLocalStorage } from '@vueuse/core'
 
 export const useTaskStore = defineStore('taskStore', () => {
-  const tasks = ref<Task[]>([])
+  const tasks = ref(useLocalStorage<Task[]>('task', []))
 
   const addTask = (task: Task) => {
     tasks.value.push(task)
